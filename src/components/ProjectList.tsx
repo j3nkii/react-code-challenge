@@ -1,12 +1,14 @@
 import {useState} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 
 const ProjectList = () => {
+    const dispatch = useDispatch();
     const [newProject, setNewProject] = useState({
         id: '',
         projectName: '',
         isActive: true,
     });
-    const [projects, setProjects]: any = useState([]);
+    const projects = useSelector((store: any) => store.projects)
     const handleChange = (e: any) => {
         setNewProject({...newProject, [e.target.name]: e.target.value})
         console.log(newProject);
@@ -19,27 +21,29 @@ const ProjectList = () => {
                     <br />
                     Name: <input name='projectName' onChange={e => handleChange(e)} value={newProject.projectName} />
                     <br />
-                    {/* <p>Active:</p> */}
+                    Active:
                     <select name="isActive" id="active" onChange={e => handleChange(e)}>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                     </select>
                     <button onClick={() => {
+                        console.log(projects);
+                        
                         setNewProject({
                             id: '',
                             projectName: '',
                             isActive: true,
                         });
-                        setProjects([
-                            ...projects,
-                            newProject
-                        ])
+                        dispatch({
+                            type: 'ADD_PROJECT',
+                            payload: newProject
+                        });
                     }}>
                         Submit
                     </button>
                 </div>
                 {
-                    projects.map((project: any) => (
+                    projects.projects.map((project: any) => (
                         <div style={{borderStyle: 'solid', margin: 10 }}>
                             <p>ID: {project.id}</p>
                             <p>Name: {project.projectName}</p>
