@@ -44,7 +44,8 @@ const ProjectList = () => {
                 </div>
                 {
                     projects.projects.map((project: any) => (
-                        <div style={{borderStyle: 'solid', margin: 10 }}>
+                        project.isActive !== 'false' && 
+                        <div key={project.id} style={{borderStyle: 'solid', margin: 10 }}>
                             <p>ID: {project.id}</p>
                             <p>Name: {project.projectName}</p>
                         </div>
