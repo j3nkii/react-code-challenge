@@ -13,6 +13,11 @@ const ProjectList = () => {
         setNewProject({...newProject, [e.target.name]: e.target.value})
         console.log(newProject);
     }
+    const clearList = () =>{
+        dispatch({
+            type: 'CLEAR_LIST'
+        })
+    }
     return (
         <>
             <h2>Function Compoent with Hooks and Redux</h2>
@@ -42,6 +47,7 @@ const ProjectList = () => {
                         Submit
                     </button>
                 </div>
+                <button onClick={() => clearList()}>Clear List</button>
                 {
                     projects.projects.map((project: any) => (
                         project.isActive !== 'false' && 
