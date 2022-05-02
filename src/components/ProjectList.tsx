@@ -62,7 +62,7 @@ const ProjectList = () => {
                             <p>ID: {project.id}</p>
                             <p>Name: {project.projectName}</p>
                             {/* <p>isActive: {String(project.isActive)}</p> */}
-                            {/* <button onClick={() => setInactive(project)}>Set to Inactive</button> */}
+                            <button onClick={() => setInactive(project)}>Set to Inactive</button>
                         </div>
                     ))
                 }

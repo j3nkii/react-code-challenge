@@ -30,21 +30,31 @@ const projectReducer = (state: ProjectState = initialState, action: AnyAction) =
             return { ...state, projects: [...state.projects, project] };
         case ProjectActionType.CLEAR_LIST:
             return { ...state, projects: [] };
-        // case ProjectActionType.SET_INACTIVE:
-        //     console.log((action as AnyAction).payload)
-        //     return {
-        //         ...state,
-        //         projects: [state.projects.map(proj => {
-        //             if(proj.id === (action as AnyAction).payload.id){
-        //                 return {...proj, isActive: false}
-        //             } else {
-        //                 return {...proj}
-        //             }
-        //         })]
-        //     }
+        case ProjectActionType.SET_INACTIVE:
+            console.log((action as AnyAction).payload)
+            return {
+                ...state, projects: findProject(state.projects, (action as AnyAction).payload)
+            }
         default:
             return state;
     }
 };
 
 export default projectReducer;
+
+function findProject(projects: any, act: any){
+    console.log(act);
+    
+    let array = [];
+    for(let proj of projects){
+        console.log(proj.id, act);
+        if(proj.id === act){
+            console.log(true);
+            
+            array.push({...proj, isActive: 'false'})
+        } else {
+            array.push(proj)
+        }
+    }
+    return array;
+}
