@@ -19,7 +19,8 @@ const initialState: ProjectState = {
 
 export enum ProjectActionType {
     ADD_PROJECT = 'ADD_PROJECT',
-    CLEAR_LIST = 'CLEAR_LIST'
+    CLEAR_LIST = 'CLEAR_LIST',
+    SET_INACTIVE = 'SET_INACTIVE'
 };
 
 const projectReducer = (state: ProjectState = initialState, action: AnyAction) => {
@@ -29,6 +30,18 @@ const projectReducer = (state: ProjectState = initialState, action: AnyAction) =
             return { ...state, projects: [...state.projects, project] };
         case ProjectActionType.CLEAR_LIST:
             return { ...state, projects: [] };
+        // case ProjectActionType.SET_INACTIVE:
+        //     console.log((action as AnyAction).payload)
+        //     return {
+        //         ...state,
+        //         projects: [state.projects.map(proj => {
+        //             if(proj.id === (action as AnyAction).payload.id){
+        //                 return {...proj, isActive: false}
+        //             } else {
+        //                 return {...proj}
+        //             }
+        //         })]
+        //     }
         default:
             return state;
     }

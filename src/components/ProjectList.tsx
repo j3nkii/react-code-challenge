@@ -18,6 +18,14 @@ const ProjectList = () => {
             type: 'CLEAR_LIST'
         })
     }
+    const setInactive = (project: any) => {
+        console.log(project);
+        
+        dispatch({
+            type: 'SET_INACTIVE',
+            payload: project.id
+        })
+    }
     return (
         <>
             <h2>Function Compoent with Hooks and Redux</h2>
@@ -33,11 +41,10 @@ const ProjectList = () => {
                     </select>
                     <button onClick={() => {
                         console.log(projects);
-                        
                         setNewProject({
                             id: '',
                             projectName: '',
-                            isActive: true,
+                            isActive: newProject.isActive,
                         });
                         dispatch({
                             type: 'ADD_PROJECT',
@@ -54,6 +61,8 @@ const ProjectList = () => {
                         <div key={project.id} style={{borderStyle: 'solid', margin: 10 }}>
                             <p>ID: {project.id}</p>
                             <p>Name: {project.projectName}</p>
+                            {/* <p>isActive: {String(project.isActive)}</p> */}
+                            {/* <button onClick={() => setInactive(project)}>Set to Inactive</button> */}
                         </div>
                     ))
                 }

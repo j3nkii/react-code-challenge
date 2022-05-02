@@ -22,6 +22,6 @@ The only file you will need to modify for these two tasks is the `ProjectList.ts
 
 These may require you to edit additional files.
 
-- [ ] Ability to clear the project list
+- [x] Ability to clear the project list
 - [x] Only display active projects **Don't think this was done super well, but with more time I could make it better.
 - [ ] Ability to mark a project as inactive
